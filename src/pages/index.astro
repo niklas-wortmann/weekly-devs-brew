@@ -1,11 +1,16 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import NewsletterForm from '../components/NewsletterForm.vue';
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Newsletter Signup - Stay Updated">
+	<main class="min-h-screen bg-primary-50 flex items-center justify-center p-4">
+		<div class="max-w-md w-full">
+			<h1 class="text-4xl font-bold text-primary-800 mb-6 text-center">Stay Updated</h1>
+			<p class="text-primary-600 mb-8 text-center">
+				Subscribe to our newsletter for the latest updates and insights.
+			</p>
+			<NewsletterForm client:load />
+		</div>
+	</main>
 </Layout>
