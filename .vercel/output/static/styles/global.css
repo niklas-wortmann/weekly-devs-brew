@@ -1,0 +1,6 @@
+@font-face {
+    font-family: 'Amalfi Coast';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Amalfi Coast'), url('/fonts/Amalfi Coast.woff') format('woff');
+}
