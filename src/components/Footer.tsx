@@ -1,12 +1,14 @@
 import React from 'react';
-import {FaLinkedin, FaInstagram} from 'react-icons/fa';
+import {FaLinkedin, FaInstagram, FaTiktok, FaYoutube} from 'react-icons/fa';
 import {FaBluesky} from 'react-icons/fa6';
 
 const Footer = () => {
   const socialLinks = [
     { icon: FaInstagram, href: 'https://www.instagram.com/weeklydevsbrew/', label: 'Instagram' },
     { icon: FaBluesky, href: 'https://bsky.app/profile/weeklydevsbrew.bsky.social', label: 'Bluesky' },
-    { icon: FaLinkedin, href: 'https;//linkedin.com/company/the-weekly-dev-s-brew', label: 'LinkedIn' },
+    { icon: FaLinkedin, href: 'https://linkedin.com/company/the-weekly-dev-s-brew', label: 'LinkedIn' },
+    { icon: FaTiktok, href: 'https://www.tiktok.com/@the.weekly.devs.b?_t=ZT-8u3rjY4d8pi&_r=1', label: 'TikTok' },
+    { icon: FaYoutube, href: 'https://www.youtube.com/channel/UC7aHZVHaVcHpu3m8vWstVxg', label: 'YouTube' },
   ];
 
   return (

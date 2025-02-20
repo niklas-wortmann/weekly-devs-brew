@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer';
+import ThemeSwitcher from '../components/ThemeSwitcher';
+import '@fontsource/bebas-neue';
+import { Image } from 'astro:assets';
+import logo from './_logo.png';
+import logoDark from './_logo-dark.png';
+---
+
+<Layout title="Subscription Confirmed - The Weekly Devs Brew">
+  <main class="min-h-screen bg-primary-light dark:bg-primary text-primary dark:text-white transition-colors duration-200">
+    <ThemeSwitcher client:load />
+    <div class="container mx-auto px-4 py-16 md:py-24">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <Image src={logoDark} width="892" height="324" alt="The Weekly Dev's Brew Logo" class="dark:hidden block"/>
+          <Image src={logo} width="892" height="324" alt="The Weekly Dev's Brew Logo" class="hidden dark:block"/>
+        </div>
+
+        <div class="bg-white dark:bg-primary-light rounded-lg shadow-xl p-8 md:p-12 text-center">
+          <div class="mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          
+          <h1 class="font-bebas text-4xl md:text-5xl text-primary dark:text-primary mb-6">
+            Welcome to the Brew Crew!
+          </h1>
+          
+          <p class="text-lg md:text-xl text-primary dark:text-primary mb-8">
+            Thanks for subscribing! You're now part of our growing community of passionate developers.
+          </p>
+          
+          <p class="text-secondary-dark mb-8">
+            Check your inbox to confirm your subscription and get ready for your weekly dose of dev insights!
+          </p>
+
+          <a 
+            href="/" 
+            class="inline-block bg-primary-accent text-white font-bebas px-8 py-3 rounded-lg hover:bg-secondary-dark transition-colors duration-200"
+            aria-label="Return to homepage"
+          >
+            Return to Homepage
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer client:load />
+</Layout>
