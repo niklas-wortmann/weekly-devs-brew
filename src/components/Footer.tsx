@@ -1,6 +1,6 @@
 import React from 'react';
 import {FaLinkedin, FaInstagram} from 'react-icons/fa';
-import {FaBluesky, FaXTwitter} from 'react-icons/fa6';
+import {FaBluesky} from 'react-icons/fa6';
 
 const Footer = () => {
   const socialLinks = [
