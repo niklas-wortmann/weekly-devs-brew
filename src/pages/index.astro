@@ -6,8 +6,10 @@ import Footer from '../components/Footer';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import '@fontsource/bebas-neue';
 import { getCollection } from 'astro:content';
+import testimonials from './public/testimonials.json';
 
-const testimonials = await getCollection('testimonials');
+
+console.log(testimonials);
 ---
 
 <Layout title="The Weekly Devs Brew - Developer Newsletter">
@@ -61,7 +63,7 @@ const testimonials = await getCollection('testimonials');
       </a>
     </nav>
 
-    <Testimonials testimonials={testimonials} client:load />
+    <Testimonials testimonials={testimonials} />
   </main>
   <Footer client:load />
 </Layout>
