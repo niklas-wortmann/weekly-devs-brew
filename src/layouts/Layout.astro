@@ -1,9 +1,11 @@
 ---
 interface Props {
 	title: string;
+	keywords?: string[];
+	noIndex?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, keywords, noIndex = false } = Astro.props;
 import '@fontsource/bebas-neue';
 
 ---
@@ -14,8 +16,11 @@ import '@fontsource/bebas-neue';
 		<meta charset="UTF-8" />
 		<meta name="description" content="The Weekly Devs Brew - Your weekly dose of developer insights, tips, and trends." />
 		<meta name="viewport" content="width=device-width" />
+		{keywords && <meta name="keywords" content={keywords.join(', ')} />}
+		{noIndex && <meta name="robots" content="noindex">}
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="sitemap" href="/sitemap-index.xml" />
 		<title>{title}</title>
 		<link rel="stylesheet" href="/styles/global.css" />
 		<script src="https://cdn.usefathom.com/script.js" data-site="BWSYVEGS" defer></script>
