@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ArchiveList from '../components/ArchiveList';
+import ThemeSwitcher from '../components/ThemeSwitcher';
+import Footer from '../components/Footer';
+import { getCollection } from 'astro:content';
+
+const episodes = await getCollection('archive');
+---
+
+<Layout title="Archive - The Weekly Devs Brew">
+  <main class="min-h-screen bg-primary-light dark:bg-primary text-primary dark:text-white transition-colors duration-200">
+    <ThemeSwitcher client:load />
+
+    <div class="container mx-auto px-4 py-16 md:py-24">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h1 class="font-bebas text-5xl md:text-6xl text-primary dark:text-white mb-4">
+            NEWSLETTER ARCHIVE
+          </h1>
+          <p class="text-lg text-secondary-dark dark:text-secondary max-w-2xl mx-auto">
+            Catch up on previous episodes of The Weekly Devs Brew. Each issue is carefully crafted to bring you the best insights from the dev world.
+          </p>
+        </div>
+
+        <ArchiveList episodes={episodes} client:load />
+      </div>
+    </div>
+  </main>
+  <Footer client:load />
+</Layout>

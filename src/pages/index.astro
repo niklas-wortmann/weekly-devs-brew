@@ -5,6 +5,9 @@ import Testimonials from '../components/Testimonials';
 import Footer from '../components/Footer';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import '@fontsource/bebas-neue';
+import { getCollection } from 'astro:content';
+
+const testimonials = await getCollection('testimonials');
 ---
 
 <Layout title="The Weekly Devs Brew - Developer Newsletter">
@@ -49,7 +52,16 @@ import '@fontsource/bebas-neue';
       </div>
     </div>
 
-    <Testimonials client:load />
+    <nav class="mb-12 text-center">
+      <a
+          href="/archive"
+          class="font-bebas text-xl text-primary-accent hover:text-secondary-dark dark:hover:text-secondary transition-colors duration-200"
+      >
+        READ PAST EPISODES →
+      </a>
+    </nav>
+
+    <Testimonials testimonials={testimonials} client:load />
   </main>
   <Footer client:load />
 </Layout>
