@@ -1,12 +1,12 @@
 import React from 'react';
-import { FaTwitter, FaGithub, FaLinkedin, FaDiscord } from 'react-icons/fa';
+import {FaLinkedin, FaInstagram} from 'react-icons/fa';
+import {FaBluesky, FaXTwitter} from 'react-icons/fa6';
 
 const Footer = () => {
   const socialLinks = [
-    { icon: FaTwitter, href: '#', label: 'Twitter' },
-    { icon: FaGithub, href: '#', label: 'GitHub' },
-    { icon: FaLinkedin, href: '#', label: 'LinkedIn' },
-    { icon: FaDiscord, href: '#', label: 'Discord' }
+    { icon: FaInstagram, href: 'https://www.instagram.com/weeklydevsbrew/', label: 'Instagram' },
+    { icon: FaBluesky, href: 'https://bsky.app/profile/weeklydevsbrew.bsky.social', label: 'Bluesky' },
+    { icon: FaLinkedin, href: 'https;//linkedin.com/company/the-weekly-dev-s-brew', label: 'LinkedIn' },
   ];
 
   return (

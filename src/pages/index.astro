@@ -1,27 +1,24 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import NewsletterForm from '../components/NewsletterForm';
-import Testimonials from '../components/Testimonials';
 import Footer from '../components/Footer';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 import '@fontsource/bebas-neue';
-import { getCollection } from 'astro:content';
-import testimonials from './public/testimonials.json';
+import { Image } from 'astro:assets';
+import logo from './logo.png';
+import logoDark from './logo-dark.png';
 
-
-console.log(testimonials);
 ---
 
 <Layout title="The Weekly Devs Brew - Developer Newsletter">
   <main class="min-h-screen bg-primary-light dark:bg-primary text-primary dark:text-white transition-colors duration-200">
     <ThemeSwitcher client:load />
-    <div class="container mx-auto px-4 py-16 md:py-24">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-16">
-          <h1 class="font-bebas text-6xl md:text-8xl text-primary dark:text-white mb-4">
-            THE WEEKLY
-            <span class="text-primary-accent">DEVS BREW</span>
-          </h1>
+    <div class="container mx-auto px-4 py-16 md:py-24 ">
+      <div class="max-w-4xl mx-auto ">
+        <div class="text-center mb-16 hero-background">
+
+          <Image src={logoDark} width="892" height="324" alt="The Weekly Dev's Brew Logo" class="dark:hidden block"/>
+          <Image src={logo} width="892" height="324" alt="The Weekly Dev's Brew Logo" class="hidden dark:block"/>
           <p class="font-amalfi text-2xl md:text-3xl text-secondary-dark dark:text-secondary mb-8">
             Your weekly dose of dev insights
           </p>
@@ -35,35 +32,50 @@ console.log(testimonials);
             JOIN THE BREW CREW
           </h2>
           <NewsletterForm client:load />
+          <div class="text-secondary-dark text-center mt-8">
+            <span>Staying up to date completely for free</span>
+          </div>
         </div>
 
         <div class="mt-16 grid md:grid-cols-3 gap-8">
           <div class="bg-white dark:bg-primary-light p-6 rounded-lg shadow-md">
-            <h3 class="font-bebas text-xl text-primary-accent mb-3">WEEKLY INSIGHTS</h3>
-            <p class="text-primary dark:text-primary">Curated content from the best dev resources, delivered every week.</p>
+            <h3 class="font-bebas text-xl text-primary-accent mb-3">SIGNAL, NOT NOISE</h3>
+            <p class="text-primary dark:text-primary">Hand-picked dev content, no stale Medium articles.</p>
           </div>
           <div class="bg-white dark:bg-primary-light p-6 rounded-lg shadow-md">
             <h3 class="font-bebas text-xl text-primary-accent mb-3">NO FLUFF</h3>
-            <p class="text-primary dark:text-primary">Pure, actionable content. No unnecessary fillers.</p>
+            <p class="text-primary dark:text-primary">Pure, actionable content. No fluff or corporate buzzwords</p>
           </div>
           <div class="bg-white dark:bg-primary-light p-6 rounded-lg shadow-md">
             <h3 class="font-bebas text-xl text-primary-accent mb-3">COMMUNITY FIRST</h3>
             <p class="text-primary dark:text-primary">Join a growing community of passionate developers.</p>
           </div>
+          <div class="bg-white dark:bg-primary-light p-6 rounded-lg shadow-md">
+            <h3 class="font-bebas text-xl text-primary-accent mb-3">WEB FOCUSED</h3>
+            <p class="text-primary dark:text-primary">Stay caffeinated with cutting-edge Web technologies</p>
+          </div>
+          <div class="bg-white dark:bg-primary-light p-6 rounded-lg shadow-md">
+            <h3 class="font-bebas text-xl text-primary-accent mb-3">FRAMEWORK AGNOSTIC</h3>
+            <p class="text-primary dark:text-primary">Rise above framework tribalism. Learn about all of them!</p>
+          </div>
+          <div class="bg-white dark:bg-primary-light p-6 rounded-lg shadow-md">
+            <h3 class="font-bebas text-xl text-primary-accent mb-3">KNOW YOUR TOOLS </h3>
+            <p class="text-primary dark:text-primary">Weekly deep dives into tools that solve real problems, not just trendy GitHub projects.</p>
+          </div>
         </div>
       </div>
     </div>
 
-    <nav class="mb-12 text-center">
-      <a
-          href="/archive"
-          class="font-bebas text-xl text-primary-accent hover:text-secondary-dark dark:hover:text-secondary transition-colors duration-200"
-      >
-        READ PAST EPISODES →
-      </a>
-    </nav>
+    <!--<nav class="pb-4 text-center">-->
+    <!--  <a-->
+    <!--      href="/archive"-->
+    <!--      class="font-bebas text-xl text-primary-accent hover:text-secondary-dark dark:hover:text-secondary transition-colors duration-200"-->
+    <!--  >-->
+    <!--    READ PAST EPISODES →-->
+    <!--  </a>-->
+    <!--</nav>-->
 
-    <Testimonials testimonials={testimonials} />
+    <!--<Testimonials testimonials={testimonials} />-->
   </main>
   <Footer client:load />
 </Layout>

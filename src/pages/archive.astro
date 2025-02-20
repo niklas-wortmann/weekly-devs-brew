@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import { getCollection } from 'astro:content';
 
 const episodes = await getCollection('archive');
+console.log(episodes);
 ---
 
 <Layout title="Archive - The Weekly Devs Brew">
