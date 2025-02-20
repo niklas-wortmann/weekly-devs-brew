@@ -7,3 +7,7 @@ List of Incremental changes:
 ```
  - refactor testimonials and archive to use astro content collections
 ```
+
+```
+ - can you move the original test data in a json file instead of yml
+```
