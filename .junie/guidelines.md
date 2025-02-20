@@ -11,3 +11,10 @@ List of Incremental changes:
 ```
  - can you move the original test data in a json file instead of yml
 ```
+
+```
+ - I receive the following runtime error InvalidContentEntryFrontmatterError: **testimonials → testimonials** frontmatter does not match collection schema.
+Expected type `"object"`, received "array"
+
+can you fix this
+```
