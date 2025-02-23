@@ -1,11 +1,21 @@
 ---
 interface Props {
 	title: string;
+	description?: string;
 	keywords?: string[];
 	noIndex?: boolean;
+	ogImage?: string;
+	twitterImage?: string;
 }
 
-const { title, keywords, noIndex = false } = Astro.props;
+const { 
+	title = "The Weekly Devs Brew",
+	description = "The Weekly Devs Brew - Your morning companion for web dev insights",
+	keywords, 
+	noIndex = false, 
+	ogImage = '/facebook-social.png',
+	twitterImage = '/twitter-social.png'
+} = Astro.props;
 import '@fontsource/bebas-neue';
 
 ---
@@ -14,13 +24,28 @@ import '@fontsource/bebas-neue';
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="The Weekly Devs Brew - Your weekly dose of developer insights, tips, and trends." />
+		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		{keywords && <meta name="keywords" content={keywords.join(', ')} />}
 		{noIndex && <meta name="robots" content="noindex">}
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<link rel="sitemap" href="/sitemap-index.xml" />
+		<link rel="canonical" href={Astro.url} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:url" content={Astro.url} />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL(ogImage, Astro.url)} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={new URL(twitterImage, Astro.url)} />
+
 		<title>{title}</title>
 		<link rel="stylesheet" href="/styles/global.css" />
 		<script src="https://cdn.usefathom.com/script.js" data-site="BWSYVEGS" defer></script>
