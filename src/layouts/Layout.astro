@@ -18,12 +18,15 @@ const {
 } = Astro.props;
 import '@fontsource/bebas-neue';
 
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
+		<link rel="canonical" href={canonicalURL} />
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		{keywords && <meta name="keywords" content={keywords.join(', ')} />}

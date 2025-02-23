@@ -7,7 +7,7 @@ const Footer = () => {
     { icon: FaInstagram, href: 'https://www.instagram.com/weeklydevsbrew/', label: 'Instagram' },
     { icon: FaBluesky, href: 'https://bsky.app/profile/weeklybrew.dev', label: 'Bluesky' },
     { icon: FaLinkedin, href: 'https://linkedin.com/company/the-weekly-dev-s-brew', label: 'LinkedIn' },
-    { icon: FaTiktok, href: 'https://www.tiktok.com/@the.weekly.devs.b?_t=ZT-8u3rjY4d8pi&_r=1', label: 'TikTok' },
+    { icon: FaTiktok, href: 'https://www.tiktok.com/@weeklybrew.dev', label: 'TikTok' },
     { icon: FaYoutube, href: 'https://www.youtube.com/channel/UC7aHZVHaVcHpu3m8vWstVxg', label: 'YouTube' },
   ];
 
