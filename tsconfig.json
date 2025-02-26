@@ -2,6 +2,13 @@
   "extends": "astro/tsconfigs/base",
   "compilerOptions": {
     "strictNullChecks": true,
-    "allowJs": true
+    "baseUrl": ".",
+    "allowJs": true,
+    "paths": {
+      "beehiiv-content-loader": [
+        "./beehiiv-loader/index.ts"
+      ],
+      "@beehiiv/sdk": ["./beehiiv-sdk/index.ts"]
+    }
   }
 }
