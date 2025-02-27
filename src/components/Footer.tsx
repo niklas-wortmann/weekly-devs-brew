@@ -1,6 +1,7 @@
 import React from 'react';
 import {FaLinkedin, FaInstagram, FaTiktok, FaYoutube} from 'react-icons/fa';
 import {FaBluesky} from 'react-icons/fa6';
+import NewsletterForm from "./NewsletterForm.tsx";
 
 const Footer = () => {
   const socialLinks = [

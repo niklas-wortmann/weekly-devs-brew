@@ -9,7 +9,22 @@ const episodes = await getCollection('archive');
 const sortedEpisodes = episodes.sort((a, b) => (b.data.publishDate || 0) - (a.data.publishDate || 0));
 ---
 
-<Layout title="Archive - The Weekly Devs Brew">
+<Layout 
+    title="The Weekly Devs Brew Newsletter Archive"
+    description="Missed an episode? Take a sip from our past brews. Each episode has been carefully roasted and filtered to extract the finest dev insights and technical wisdom."
+    keywords={[
+        'developer newsletter archive',
+        'web development articles',
+        'javascript insights collection',
+        'tech newsletter archive',
+        'development best practices',
+        'coding knowledge base',
+        'web development resources',
+        'developer learning materials',
+        'programming articles archive',
+        'tech industry insights'
+    ]}
+>
     <main class="min-h-screen bg-primary-light dark:bg-primary text-primary dark:text-white transition-colors duration-200">
         <ThemeSwitcher client:load />
 

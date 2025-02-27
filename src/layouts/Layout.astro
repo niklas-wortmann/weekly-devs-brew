@@ -1,4 +1,6 @@
 ---
+import Header from '../components/Header.astro';
+
 interface Props {
 	title: string;
 	description?: string;
@@ -11,7 +13,23 @@ interface Props {
 const { 
 	title = "The Weekly Devs Brew",
 	description = "The Weekly Devs Brew - Your morning companion for web dev insights",
-	keywords, 
+	keywords= [
+		'javascript newsletter',
+		'web development newsletter',
+		'developer newsletter subscription',
+		'javascript ecosystem updates',
+		'technical newsletter developers',
+		'javascript development trends',
+		'web development insights',
+		'framework agnostic analysis',
+		'typescript news',
+		'frontend development updates',
+		'coding newsletters',
+		'keep up with web development',
+		'web development learning resources',
+		'technical web development news',
+		'weekly javascript insights'
+	],
 	noIndex = false, 
 	ogImage = '/facebook-social.png',
 	twitterImage = '/twitter-social.png'
@@ -54,6 +72,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<script src="https://cdn.usefathom.com/script.js" data-site="BWSYVEGS" defer></script>
 	</head>
 	<body>
+		<Header client:load />
 		<main transition:animate="slide">
 			<slot />
 		</main>

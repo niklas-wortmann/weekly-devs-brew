@@ -13,9 +13,10 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+console.log('post', post);
 ---
 
-<Layout title={`${post.data.title}`}>
+<Layout title={`${post.data.title}`} description={post.data.previewText} keywords={post.data.contentTags} ogImage={post.data.thumbnailUrl} twitterImage={post.data.thumbnailUrl}/>
     <main class="min-h-screen bg-primary-light dark:bg-primary text-primary dark:text-white transition-colors duration-200">
         <ThemeSwitcher client:load />
 
