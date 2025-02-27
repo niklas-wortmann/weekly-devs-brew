@@ -1,5 +1,5 @@
 import React from 'react';
-import {FaLinkedin, FaInstagram, FaTiktok, FaYoutube} from 'react-icons/fa';
+import {FaLinkedin, FaInstagram, FaTiktok, FaYoutube, FaRss} from 'react-icons/fa';
 import {FaBluesky} from 'react-icons/fa6';
 import NewsletterForm from "./NewsletterForm.tsx";
 
@@ -10,6 +10,7 @@ const Footer = () => {
     { icon: FaLinkedin, href: 'https://linkedin.com/company/the-weekly-dev-s-brew', label: 'LinkedIn' },
     { icon: FaTiktok, href: 'https://www.tiktok.com/@weeklybrew.dev', label: 'TikTok' },
     { icon: FaYoutube, href: 'https://www.youtube.com/channel/UC7aHZVHaVcHpu3m8vWstVxg', label: 'YouTube' },
+    { icon: FaRss, href: '/rss.xml', label: 'RSS Feed' },
   ];
 
   return (
