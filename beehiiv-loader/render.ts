@@ -10,9 +10,9 @@ import {z} from "astro/zod";
 import type {ParseDataOptions} from "astro/loaders";
 
 const baseProcessor = unified()
-    .use(rehypeParse, {})
+    .use(rehypeParse)
     .use(rehypeSlug)
-    .use(rehypeStringify); // Turn AST to HTML string
+    .use(rehypeStringify);
 
 export type RehypePlugin = Plugin<any[], any>;
 
@@ -32,10 +32,7 @@ export function buildProcessor(
 
     return async function process(blocks: string) {
         const processor = await processorPromise;
-        const vFile = await processor.process({ data: blocks } as Record<
-            string,
-            unknown
-        >);
+        const vFile = await processor.process(blocks);
         return { vFile, headings };
     };
 }
@@ -56,7 +53,6 @@ export class BeehivePostRenderer {
     async render(
         process: ReturnType<typeof buildProcessor>,
     ): Promise<{ html: string, metadata: {headings: MarkdownHeading[]} } | undefined> {
-        this.logger.debug("Rendering");
         try {
             if(!this.post.content?.free.web){
                 return undefined;

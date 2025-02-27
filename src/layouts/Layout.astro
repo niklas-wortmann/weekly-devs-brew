@@ -54,6 +54,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<script src="https://cdn.usefathom.com/script.js" data-site="BWSYVEGS" defer></script>
 	</head>
 	<body>
-		<slot />
+		<main transition:animate="slide">
+			<slot />
+		</main>
 	</body>
 </html>

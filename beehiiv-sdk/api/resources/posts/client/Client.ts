@@ -410,7 +410,6 @@ export class Posts {
         if (hiddenFromFeed != null) {
             _queryParams["hidden_from_feed"] = hiddenFromFeed;
         }
-        console.log({_queryParams});
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.environment)) ?? environments.BeehiivEnvironment.Default,

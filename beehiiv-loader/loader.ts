@@ -6,7 +6,7 @@ import {
     buildProcessor,
     type RehypePlugin,
 } from "./render.js";
-import type {Post, PostResponse} from "./types.js";
+import type {Post} from "./types.js";
 import {BeehiivClient} from "@beehiiv/sdk";
 
 type ExpandQueryOptions = "stats" | "free_web_content" | "free_email_content" | "free_rss_content" | "premium_web_content" | "premium_email_content"
@@ -28,7 +28,7 @@ export interface BeehiveLoaderOptions {
      * Pass rehype plugins to customize how the Notion output HTML is processed.
      * You can import and apply the plugin function (recommended), or pass the plugin name as a string.
      */
-    rehypePlugins?: RehypePlugins;
+    rehypePlugins?: RehypePlugins
     apiKey: string;
 }
 
@@ -65,17 +65,16 @@ export function beehiveLoader({
             logger.info("Loading beehive posts");
             const renderPromises: Promise<void>[] = [];
             const posts = await fetchAllPosts(apiArguments) as any[];
-            console.log({posts})
             for await (const post of posts) {
                 existingPageIds.delete(post.id);
                 const existingPage = store.get(post.id);
-                if (existingPage?.digest !== post.created) {
+                if (existingPage?.digest !== (post.publishDate ?? post.created)) {
                     const renderer = new BeehivePostRenderer(post, logger);
                     const data = await parseData(await renderer.getPageData());
                     const renderPromise = renderer.render(processor).then((rendered) => {
                         store.set({
                             id: post.id,
-                            digest: post.created,
+                            digest: post.publishDate ?? post.created,
                             data,
                             rendered,
                         });
@@ -97,7 +96,6 @@ export function beehiveLoader({
 const fetchPostPerPAge = async function(options: Exclude<BeehiveLoaderOptions, "rehypePlugins">, page = 1 ) {
 
     const client = new BeehiivClient({ token: options.apiKey });
-    console.log({options})
     return await client.posts.index(options.publicationId, {page: page, ...options});
 
 }

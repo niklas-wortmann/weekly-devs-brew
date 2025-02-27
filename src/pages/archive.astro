@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 import { getCollection } from 'astro:content';
 
 const episodes = await getCollection('archive');
-console.log(episodes);
+const sortedEpisodes = episodes.sort((a, b) => (b.data.publishDate || 0) - (a.data.publishDate || 0));
 ---
 
 <Layout title="Archive - The Weekly Devs Brew">
@@ -16,15 +16,18 @@ console.log(episodes);
         <div class="container mx-auto px-4 py-16 md:py-24">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-12">
-                    <h1 class="font-bebas text-5xl md:text-6xl text-primary dark:text-white mb-4">
-                        NEWSLETTER ARCHIVE
+                    <h1 class="font-bebas text-5xl md:text-6xl text-primary-accent mb-4">
+                        THE BREW JOURNAL
                     </h1>
-                    <p class="text-lg text-secondary-dark dark:text-secondary max-w-2xl mx-auto">
-                        Catch up on previous episodes of The Weekly Devs Brew. Each issue is carefully crafted to bring you the best insights from the dev world.
+                    <p class="text-lg text-secondary-dark dark:text-secondary max-w-2xl mx-auto mb-4">
+                        Take a sip from our past brews. Each episode has been carefully roasted and filtered to extract the finest dev insights and technical wisdom.
+                    </p>
+                    <p class="text-md text-primary dark:text-primary-accent">
+                        ☕️ Fresh tech discussions served weekly
                     </p>
                 </div>
 
-                <ArchiveList episodes={episodes} client:load />
+                <ArchiveList episodes={sortedEpisodes} />
             </div>
         </div>
     </main>

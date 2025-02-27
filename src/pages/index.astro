@@ -31,7 +31,7 @@ import logoDark from './_logo-dark.png';
 >
   <main class="min-h-screen bg-primary-light dark:bg-primary text-primary dark:text-white transition-colors duration-200">
     <ThemeSwitcher client:load />
-    <div class="container mx-auto px-4 py-16 md:py-24 ">
+    <div class="container mx-auto px-4 py-16 md:py-16 ">
       <div class="max-w-4xl mx-auto ">
         <div class="text-center mb-16 hero-background">
 
@@ -81,17 +81,24 @@ import logoDark from './_logo-dark.png';
             <p class="text-primary dark:text-primary">Weekly deep dives into tools that solve real problems, not just trendy GitHub projects.</p>
           </div>
         </div>
+
+          <div class="mt-16 pb-4">
+              <a
+                      href="/archive"
+                      class="group bg-white dark:bg-primary-light p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 text-center block"
+              >
+                  <h3 class="font-bebas text-2xl text-primary-accent mb-3 group-hover:text-secondary-dark transition-colors duration-200">BREW HISTORY</h3>
+                  <p class="text-primary dark:text-primary mb-6">Savor our past brews - A collection of previously shared dev insights and tech discussions</p>
+                  <button class="inline-flex items-center px-6 py-3 font-bebas text-xl bg-primary-accent text-white rounded-lg hover:bg-secondary-dark transition-colors duration-200 transform hover:scale-105">
+                      EXPLORE PAST EPISODES
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                      </svg>
+                  </button>
+              </a>
+          </div>
       </div>
     </div>
-
-    <!--<nav class="pb-4 text-center">-->
-    <!--  <a-->
-    <!--      href="/archive"-->
-    <!--      class="font-bebas text-xl text-primary-accent hover:text-secondary-dark dark:hover:text-secondary transition-colors duration-200"-->
-    <!--  >-->
-    <!--    READ PAST EPISODES →-->
-    <!--  </a>-->
-    <!--</nav>-->
 
     <!--<Testimonials testimonials={testimonials} />-->
   </main>

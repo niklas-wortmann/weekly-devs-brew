@@ -4,6 +4,51 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            color: '#09302B',
+            a: {
+              color: '#D69C42',
+              '&:hover': {
+                color: '#9F4900',
+              },
+            },
+            h1: {
+              color: '#D69C42',
+              fontFamily: '"Bebas Neue", sans-serif',
+            },
+            h2: {
+              color: '#D69C42',
+              fontFamily: '"Bebas Neue", sans-serif',
+            },
+            h3: {
+              color: '#D69C42',
+              fontFamily: '"Bebas Neue", sans-serif',
+            },
+          },
+        },
+        invert: {
+          css: {
+            color: '#F6E8E5',
+            a: {
+              color: '#D69C42',
+              '&:hover': {
+                color: '#B6C1C0',
+              },
+            },
+            h1: {
+              color: '#D69C42',
+            },
+            h2: {
+              color: '#D69C42',
+            },
+            h3: {
+              color: '#D69C42',
+            },
+          },
+        },
+      },
       colors: {
         primary: {
           DEFAULT: '#09302B',
@@ -22,5 +67,9 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography')({
+      className: 'prose',
+    }),
+  ],
 }
