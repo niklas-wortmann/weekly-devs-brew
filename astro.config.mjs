@@ -9,8 +9,5 @@ export default defineConfig({
   integrations: [tailwind(), react(), sitemap()],
   output: 'static',
   adapter: vercel(),
-  viewTransitions: true,
-  experimental: {
-    svg: true,
-  }
+  viewTransitions: true
 });

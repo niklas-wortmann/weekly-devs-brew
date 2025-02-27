@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ArchiveList from '../components/ArchiveList';
-import ThemeSwitcher from '../components/ThemeSwitcher';
 import Footer from '../components/Footer';
 import { getCollection } from 'astro:content';
 
@@ -26,7 +25,6 @@ const sortedEpisodes = episodes.sort((a, b) => (b.data.publishDate || 0) - (a.da
     ]}
 >
     <main class="min-h-screen bg-primary-light dark:bg-primary text-primary dark:text-white transition-colors duration-200">
-        <ThemeSwitcher client:load />
 
         <div class="container mx-auto px-4 py-16 md:py-24">
             <div class="max-w-4xl mx-auto">

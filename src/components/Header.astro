@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import logo from '../pages/_logo.png';
 import logoDark from '../pages/_logo-dark.png';
+import ThemeSwitcher from "./ThemeSwitcher";
 
 const isHomePage = Astro.url.pathname === '/';
 ---
@@ -31,5 +32,7 @@ const isHomePage = Astro.url.pathname === '/';
       <Image src={logoDark} alt="The Weekly Dev's Brew Logo" class="dark:hidden block"/>
       <Image src={logo} alt="The Weekly Dev's Brew Logo" class="hidden dark:block"/>
     </a>
+    <ThemeSwitcher client:load />
+
   </div>
 </header>
