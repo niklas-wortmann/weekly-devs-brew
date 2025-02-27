@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import Footer from '../../components/Footer';
+import NewsletterForm from '../../components/NewsletterForm';
 
 export async function getStaticPaths() {
     const posts = await getCollection('archive');
@@ -17,7 +18,7 @@ const { post } = Astro.props;
 <Layout title={`${post.data.title}`} description={post.data.previewText} keywords={post.data.contentTags} ogImage={post.data.thumbnailUrl} twitterImage={post.data.thumbnailUrl}/>
     <main class="min-h-screen bg-primary-light dark:bg-primary text-primary dark:text-white transition-colors duration-200">
 
-        <article class="container mx-auto px-4 py-16 md:py-24">
+        <article class="container mx-auto px-4 py-8 md:py-8">
             <div class="max-w-4xl mx-auto">
                 <div class="mb-8">
                     <a href="/archive" class="text-primary-accent hover:text-secondary-dark transition-colors duration-200 font-bebas">
@@ -43,6 +44,18 @@ const { post } = Astro.props;
                 </div>
             </div>
         </article>
+
+        <div class="pb-8">
+            <div class="bg-white dark:bg-primary-light rounded-lg shadow-xl p-8 md:p-12 container mx-auto max-w-4xl">
+                <h2 class="font-bebas text-3xl md:text-4xl text-primary dark:text-primary mb-8 text-center">
+                    JOIN THE BREW CREW
+                </h2>
+                <NewsletterForm client:load />
+                <div class="text-secondary-dark text-center mt-10">
+                    <span>Don't miss the next episode and stay up to date completely for free</span>
+                </div>
+            </div>
+        </div>
     </main>
     <Footer client:load />
 </Layout>
