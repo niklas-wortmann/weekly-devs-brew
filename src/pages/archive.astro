@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import { getCollection } from 'astro:content';
 
 const episodes = await getCollection('archive');
-const sortedEpisodes = episodes.sort((a, b) => (b.data.publishDate || 0) - (a.data.publishDate || 0));
+const sortedEpisodes = episodes.sort((a, b) => (a.data.publishDate ?? a.data.displayedDate ?? 0) - (b.data.publishDate ?? b.data.displayedDate ?? 0));
 ---
 
 <Layout 

@@ -8,7 +8,8 @@ export default function rehypeRemoveStyleAttribute() {
                 return index
             }
             let value = node.properties.style
-            if (typeof value === 'string') {
+
+            if (typeof value === 'string' && !['pre', "span"].includes(node.tagName.toLowerCase())) {
                 node.properties.style =  undefined
             }
         })
