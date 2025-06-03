@@ -17,7 +17,7 @@ const Footer = () => {
     <footer className="bg-primary dark:bg-primary/90 text-white py-12 transition-colors duration-200">
       <div className="max-w-4xl mx-auto px-4">
         <div className="text-center mb-8">
-          <h2 className="font-bebas text-3xl mb-4">THE WEEKLY DEVS BREW</h2>
+          <h2 className="font-bebas text-3xl mb-4">THE WEEKLY DEV'S BREW</h2>
           <p className="text-secondary mb-6">Join our brewing community</p>
           <div className="flex justify-center gap-6">
             {socialLinks.map((social, index) => (

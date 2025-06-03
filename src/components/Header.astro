@@ -5,6 +5,7 @@ import logoDark from '../pages/_logo-dark.png';
 import ThemeSwitcher from "./ThemeSwitcher";
 
 const isHomePage = Astro.url.pathname === '/';
+const currentPath = Astro.url.pathname;
 ---
 
 <script>
@@ -23,16 +24,67 @@ const isHomePage = Astro.url.pathname === '/';
     observer.observe(hero);
   }
 </script>
-<header class="sticky top-0 z-50 bg-primary-light dark:bg-primary py-4">
-  <div class="container mx-auto px-4">
-    <a href="/" class={`
-      block w-48 header-logo
-      transition-opacity duration-300
-      ${isHomePage ? 'opacity-0' : 'opacity-100'}`}>
-      <Image src={logoDark} alt="The Weekly Dev's Brew Logo" class="dark:hidden block"/>
-      <Image src={logo} alt="The Weekly Dev's Brew Logo" class="hidden dark:block"/>
-    </a>
-    <ThemeSwitcher client:load />
+<header class="sticky top-0 z-50 bg-primary-light dark:bg-primary py-4 shadow-md relative">
+  <!-- Decorative elements -->
+  <div class="absolute top-0 right-0 w-32 h-32 bg-primary-accent opacity-5 rounded-full -mr-10 -mt-10 hidden md:block"></div>
+  <div class="absolute bottom-0 left-0 w-24 h-24 bg-primary-accent opacity-5 rounded-full -ml-8 -mb-8 hidden md:block"></div>
 
+  <div class="container mx-auto px-4 flex justify-between items-center relative">
+    <div class="flex items-center">
+      <a href="/" class={`
+        block w-48 header-logo
+        transition-opacity duration-300
+        ${isHomePage ? 'opacity-0' : 'opacity-100'}`}>
+        <Image src={logoDark} alt="The Weekly Dev's Brew Logo" class="dark:hidden block"/>
+        <Image src={logo} alt="The Weekly Dev's Brew Logo" class="hidden dark:block"/>
+      </a>
+      <nav class="ml-8 hidden md:block">
+        <ul class="flex space-x-4">
+          <li>
+            <a 
+              href="/" 
+              class={`group flex items-center px-4 py-2 rounded-lg transition-all duration-300 
+                ${currentPath === '/' 
+                  ? 'bg-primary-accent bg-opacity-10 text-primary-accent dark:text-primary-accent font-bold' 
+                  : 'text-primary dark:text-white hover:bg-primary-accent hover:bg-opacity-10 hover:text-primary-accent dark:hover:text-primary-accent'}`}
+            >
+              <span class="relative">
+                Home
+                <span class={`absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-accent transition-all duration-300 ${currentPath === '/' ? 'w-full' : 'group-hover:w-full'}`}></span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a 
+              href="/podcast" 
+              class={`group flex items-center px-4 py-2 rounded-lg transition-all duration-300 
+                ${currentPath === '/podcast' 
+                  ? 'bg-primary-accent bg-opacity-10 text-primary-accent dark:text-primary-accent font-bold' 
+                  : 'text-primary dark:text-white hover:bg-primary-accent hover:bg-opacity-10 hover:text-primary-accent dark:hover:text-primary-accent'}`}
+            >
+              <span class="relative">
+                Podcast
+                <span class={`absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-accent transition-all duration-300 ${currentPath === '/podcast' ? 'w-full' : 'group-hover:w-full'}`}></span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a 
+              href="/archive" 
+              class={`group flex items-center px-4 py-2 rounded-lg transition-all duration-300 
+                ${currentPath === '/archive' 
+                  ? 'bg-primary-accent bg-opacity-10 text-primary-accent dark:text-primary-accent font-bold' 
+                  : 'text-primary dark:text-white hover:bg-primary-accent hover:bg-opacity-10 hover:text-primary-accent dark:hover:text-primary-accent'}`}
+            >
+              <span class="relative">
+                Newsletter Archive
+                <span class={`absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-accent transition-all duration-300 ${currentPath === '/archive' ? 'w-full' : 'group-hover:w-full'}`}></span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <ThemeSwitcher client:load />
   </div>
 </header>
