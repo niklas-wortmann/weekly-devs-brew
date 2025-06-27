@@ -3,10 +3,29 @@ import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer';
 import { Image } from 'astro:assets';
 import headshot from '../images/headshot.jpg';
-import { FaApple, FaSpotify, FaRss, FaHeartbeat, FaPodcast, FaMusic } from 'react-icons/fa';
+import { FaApple, FaSpotify, FaRss, FaHeartbeat, FaPodcast, FaMusic, FaCalendar, FaClock, FaHeadphones } from 'react-icons/fa';
+import { getCollection } from 'astro:content';
 
 const title = "The Weekly Dev's Brew Podcast";
 const description = "The Weekly Dev's Brew Podcast - Your morning companion for web dev insights. Join host Jan-Niklas Wortmann for authentic conversations with the people building the web.";
+
+// Get all podcast episodes
+const allEpisodes = await getCollection('podcast');
+
+// Sort by publication date (newest first)
+const sortedEpisodes = allEpisodes.sort((a, b) => {
+  const dateA = new Date(a.data.pubDate);
+  const dateB = new Date(b.data.pubDate);
+  return dateB.getTime() - dateA.getTime();
+});
+
+// Format duration
+const formatDuration = (seconds) => {
+  if (!seconds) return 'Unknown';
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  return hours > 0 ? `${hours}h ${minutes}m` : `${minutes} min`;
+};
 ---
 
 <Layout 
@@ -198,6 +217,85 @@ const description = "The Weekly Dev's Brew Podcast - Your morning companion for 
               </p>
             </div>
           </div>
+        </div>
+        
+        <!-- Episodes List -->
+        <div class="bg-white dark:bg-primary-light rounded-lg shadow-xl p-8 md:p-12 mb-16">
+          <h2 class="font-bebas text-3xl md:text-4xl text-primary dark:text-primary mb-8 text-center">
+            ALL EPISODES
+          </h2>
+          
+          {sortedEpisodes.length === 0 ? (
+            <p class="text-center text-gray-500 dark:text-gray-400">No episodes found. Check back soon!</p>
+          ) : (
+            <div class="space-y-8">
+              {sortedEpisodes.map((episode) => {
+                const pubDate = new Date(episode.data.pubDate);
+                const formattedDate = pubDate.toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                });
+                
+                return (
+                  <div class="border-b border-gray-200 dark:border-gray-700 pb-8 last:border-0 last:pb-0">
+                    <div class="flex flex-col md:flex-row gap-6">
+                      {episode.data.image && (
+                        <div class="md:w-1/4">
+                          <img 
+                            src={episode.data.image} 
+                            alt={`Cover image for ${episode.data.title}`} 
+                            class="w-full rounded-lg shadow-md"
+                          />
+                        </div>
+                      )}
+                      
+                      <div class={episode.data.image ? "md:w-3/4" : "w-full"}>
+                        <h3 class="text-xl md:text-2xl font-bold mb-2 hover:text-primary-accent transition-colors">
+                          <a href={`/podcast/${episode.id}`}>{episode.data.title}</a>
+                        </h3>
+                        
+                        <div class="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300 mb-3">
+                          <div class="flex items-center">
+                            <FaCalendar client:load className="mr-2 text-primary-accent" />
+                            <span>{formattedDate}</span>
+                          </div>
+                          
+                          {episode.data.duration && (
+                            <div class="flex items-center">
+                              <FaClock client:load className="mr-2 text-primary-accent" />
+                              <span>{formatDuration(episode.data.duration)}</span>
+                            </div>
+                          )}
+                          
+                          {episode.data.episodeNumber && (
+                            <div class="flex items-center">
+                              <FaHeadphones client:load className="mr-2 text-primary-accent" />
+                              <span>Episode {episode.data.episodeNumber}</span>
+                            </div>
+                          )}
+                        </div>
+                        
+                        <p class="text-gray-700 dark:text-gray-300 mb-4 line-clamp-3">
+                          {episode.data.description.replace(/<[^>]*>/g, '').substring(0, 200)}...
+                        </p>
+                        
+                        <a 
+                          href={`/podcast/${episode.id}`} 
+                          class="inline-flex items-center text-primary-accent hover:underline"
+                        >
+                          Listen to episode
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
     </div>
