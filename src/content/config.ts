@@ -20,19 +20,7 @@ const podcastCollection = defineCollection({
     })
 });
 
-// Define schema for testimonials collection
-const testimonialsCollection = defineCollection({
-    type: 'data', // Use data collection type for JSON files
-    schema: z.object({
-        content: z.string(),
-        author: z.string(),
-        role: z.string(),
-        platform: z.string()
-    })
-});
-
 export const collections = {
     'archive': archiveCollection,
     'podcast': podcastCollection,
-    'testimonials': testimonialsCollection
 };

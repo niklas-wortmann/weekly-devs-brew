@@ -85,7 +85,7 @@ async function fetchEpisodes(options: RSSLoaderOptions, logger: any): Promise<Po
       // Extract chapters if available
       const chapters = item["psc:chapters"]?.["psc:chapter"]?.map((chapter: any) => ({
         start: chapter._start,
-        title: chapter["#text"],
+        title: chapter._title,
       })) || [];
       
       // Extract keywords
