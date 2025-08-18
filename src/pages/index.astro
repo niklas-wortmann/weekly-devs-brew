@@ -2,16 +2,26 @@
 import Layout from '../layouts/Layout.astro';
 import logo from './_logo.png';
 import logoDark from './_logo-dark.png';
-import NewsletterForm from '../components/NewsletterForm';
+import NewsletterFormVue from '../components/NewsletterFormVue.vue';
 import Footer from '../components/Footer';
 import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Testimonials from '../components/Testimonials';
 
+const testimonials = await getCollection('testimonials');
+const testimonialsData = testimonials.map((t) => ({
+  id: t.data.id,
+  content: t.data.content,
+  author: t.data.author,
+  role: t.data.role,
+  platform: t.data.platform
+}));
 ---
 
 <Layout 
   title="The Weekly Devs Brew"
 >
-  <main class="min-h-screen bg-primary-light dark:bg-primary text-primary dark:text-white transition-colors duration-200">
+  <main class="min-h-screen bg-primary-light dark:bg-primary text-primary transition-colors duration-200">
     <div class="container mx-auto px-4 py-16 md:py-16 ">
       <div class="max-w-4xl mx-auto ">
         <div id="hero" class="text-center mb-16 hero-background">
@@ -31,7 +41,7 @@ import { Image } from 'astro:assets';
           <h2 class="font-bebas text-3xl md:text-4xl text-primary mb-6 text-center">
             JOIN THE BREW CREW
           </h2>
-          <NewsletterForm client:load />
+          <NewsletterFormVue client:load />
           <div class="text-secondary-dark text-center mt-8">
             <span>Staying up to date completely for free</span>
           </div>
@@ -95,7 +105,7 @@ import { Image } from 'astro:assets';
       </div>
     </div>
 
-    <!--<Testimonials testimonials={testimonials} />-->
+    <Testimonials testimonials={testimonialsData} />
   </main>
   <Footer />
 </Layout>

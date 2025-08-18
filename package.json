@@ -16,6 +16,7 @@
     "@astrojs/sitemap": "3.2.1",
     "@astrojs/tailwind": "6.0.0",
     "@astrojs/vercel": "8.0.8",
+    "@astrojs/vue": "^5.0.5",
     "@fontsource/bebas-neue": "^5.0.8",
     "@jsdevtools/rehype-toc": "^3.0.2",
     "@tailwindcss/typography": "^0.5.10",

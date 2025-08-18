@@ -1,4 +1,4 @@
-import { defineCollection} from 'astro:content';
+import { defineCollection, z } from 'astro:content';
 import {beehiveLoader} from "beehiiv-content-loader";
 import rehypeRemoveStyleAttribute from "../rehype-remove-inline-style.ts";
 
@@ -13,6 +13,18 @@ const archiveCollection = defineCollection({
     })
 });
 
+const testimonialsCollection = defineCollection({
+    type: 'data',
+    schema: z.object({
+        id: z.number(),
+        content: z.string(),
+        author: z.string(),
+        role: z.string(),
+        platform: z.string()
+    })
+});
+
 export const collections = {
-    'archive': archiveCollection
+    'archive': archiveCollection,
+    'testimonials': testimonialsCollection
 };
