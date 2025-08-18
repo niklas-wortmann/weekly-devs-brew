@@ -6,7 +6,13 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://weeklybrew.dev',
-  integrations: [tailwind(), react(), sitemap()],
+  integrations: [
+    tailwind(),
+    react(),
+    sitemap({
+      filter: (page) => !page.includes('/podcast/guest')
+    })
+  ],
   output: 'static',
   adapter: vercel(),
   viewTransitions: true

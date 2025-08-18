@@ -1,0 +1,88 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Footer from '../../components/Footer';
+
+const title = "Podcast Guest Guide – The Weekly Dev's Brew";
+const description = "Everything you need to get ready for your appearance on The Weekly Dev's Brew. Video podcast reminder, quick setup tips for lighting, camera, and audio, plus a link to schedule a tech check.";
+---
+
+<Layout title={title} description={description} noIndex={true}>
+  <main class="min-h-screen bg-primary-light dark:bg-primary text-primary dark:text-white transition-colors duration-200">
+    <div class="container mx-auto px-4 py-16 md:py-16">
+      <div class="max-w-3xl mx-auto">
+        <header class="mb-10 text-center">
+          <h1 class="text-4xl md:text-5xl font-bebas mb-4">Podcast Guest Guide</h1>
+          <p class="text-secondary-dark dark:text-secondary text-lg">A quick, friendly prep so our conversation feels like catching up at your favorite coffee shop.</p>
+        </header>
+
+        <section class="bg-white dark:bg-primary-light rounded-lg shadow-xl p-6 md:p-8 mb-8">
+          <h2 class="font-bebas text-2xl md:text-3xl text-primary dark:text-white mb-3">Quick Reminder</h2>
+          <p>
+            This is a <strong>video podcast</strong>. We record both audio and video so listeners can enjoy
+            the conversation wherever they like.
+          </p>
+        </section>
+
+        <section class="bg-white dark:bg-primary-light rounded-lg shadow-xl p-6 md:p-8 mb-8">
+          <h2 class="font-bebas text-2xl md:text-3xl text-primary dark:text-white mb-4">Best Practices</h2>
+          <div class="space-y-6">
+            <div>
+              <h3 class="font-bold text-xl mb-2">Lighting</h3>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>Face a light source (window or soft key light). Avoid strong backlight.</li>
+                <li>Keep lighting <em>soft and even</em>; diffused light is your friend.</li>
+                <li>Warm, muted tones match our vibe—avoid overly bright or color-shifting LEDs.</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="font-bold text-xl mb-2">Camera</h3>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>Eye-level framing, with a bit of headroom.</li>
+                <li>Clean lens, stable placement; if possible, use 1080p or better.</li>
+                <li>Background: calm and uncluttered—coffee shop energy, not server room chaos.</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="font-bold text-xl mb-2">Audio</h3>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>External mic or headset preferred over built-in laptop mics.</li>
+                <li>Quiet room, minimize echo (soft furnishings help).</li>
+                <li>Wear headphones if there’s a chance of feedback.</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="font-bold text-xl mb-2">Connection</h3>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>Solid internet connection (wired if possible; otherwise strong Wi‑Fi near the router).</li>
+                <li>Close bandwidth-heavy apps/tabs during the recording.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="bg-white dark:bg-primary-light rounded-lg shadow-xl p-6 md:p-8 mb-8">
+          <h2 class="font-bebas text-2xl md:text-3xl text-primary dark:text-white mb-3">Want a quick tech check?</h2>
+          <p class="mb-4">
+            If you’d like me to take a quick look at your setup—or just want to run anything by me—
+            feel free to schedule a short session here:
+          </p>
+          <p>
+            <a href="https://cal.com/weekly-devs-brew/tech-check" class="inline-flex items-center px-5 py-3 font-bebas text-xl bg-primary-accent text-white rounded-lg hover:bg-secondary-dark transition-colors duration-200">
+              Schedule a Tech Check
+            </a>
+          </p>
+        </section>
+
+        <section class="bg-white dark:bg-primary-light rounded-lg shadow-xl p-6 md:p-8">
+          <h2 class="font-bebas text-2xl md:text-3xl text-primary dark:text-white mb-3">Recording Day Flow</h2>
+          <ol class="list-decimal pl-5 space-y-1">
+            <li>Join the call a few minutes early—we’ll do a quick AV check.</li>
+            <li>We’ll keep it relaxed and genuine; think “coffee chat,” not board meeting.</li>
+            <li>We can pause anytime if you need to reset or rephrase—no stress.</li>
+          </ol>
+        </section>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
