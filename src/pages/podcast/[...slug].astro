@@ -1,0 +1,144 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Footer from '../../components/Footer';
+import { FaCalendar, FaClock, FaHeadphones, FaDownload, FaShare } from 'react-icons/fa';
+import {createSlug} from "../../slug";
+
+export async function getStaticPaths() {
+  const podcastEntries = await getCollection('podcast');
+  return podcastEntries.map(entry => ({
+    params: { slug: createSlug(entry.data.title) },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+
+// Format date
+const pubDate = new Date(data.pubDate);
+const formattedDate = pubDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+// Format duration
+const formatDuration = (seconds) => {
+  if (!seconds) return 'Unknown';
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  return hours > 0 ? `${hours}h ${minutes}m` : `${minutes} min`;
+};
+
+// Meta data
+const title = data.title;
+const description = data.description.replace(/<[^>]*>/g, '').substring(0, 160) + '...';
+console.log(data.chapters)
+---
+
+<Layout 
+  title={title}
+  description={description}
+  keywords={data.keywords || []}
+>
+  <main class="min-h-screen bg-primary-light dark:bg-primary text-primary dark:text-primary transition-colors duration-200">
+    <div class="container mx-auto px-4 py-16 md:py-16">
+      <div class="max-w-4xl mx-auto">
+        <!-- Episode Header -->
+        <div class="mb-8">
+          <a href="/podcast" class="text-primary-accent hover:underline mb-4 inline-block">
+            &larr; Back to all episodes
+          </a>
+          <h1 class="text-3xl md:text-4xl font-bold mb-4 ">{data.title}</h1>
+          
+          <div class="flex flex-wrap gap-4 text-sm text-gray-600  mb-6">
+            <div class="flex items-center">
+              <FaCalendar client:load className="mr-2 text-primary-accent" />
+              <span>{formattedDate}</span>
+            </div>
+            
+            {data.duration && (
+              <div class="flex items-center">
+                <FaClock client:load className="mr-2 text-primary-accent" />
+                <span>{formatDuration(data.duration)}</span>
+              </div>
+            )}
+            
+            {data.episodeNumber && (
+              <div class="flex items-center">
+                <FaHeadphones client:load className="mr-2 text-primary-accent" />
+                <span>Episode {data.episodeNumber}</span>
+              </div>
+            )}
+          </div>
+          
+          {data.image && (
+            <img 
+              src={data.image} 
+              alt={`Cover image for ${data.title}`} 
+              class="w-full max-w-md mx-auto rounded-lg shadow-lg mb-8"
+            />
+          )}
+        </div>
+        
+        <!-- Audio Player -->
+        <div class="bg-white dark:bg-primary-light rounded-lg shadow-xl p-6 mb-8">
+          <h2 class="font-bold text-xl mb-4">Listen to this episode</h2>
+          <audio 
+            controls 
+            class="w-full" 
+            preload="metadata"
+          >
+            <source src={data.enclosureUrl} type={data.enclosureType || 'audio/mpeg'} />
+            Your browser does not support the audio element.
+          </audio>
+          
+          <div class="mt-4 flex justify-between">
+            <a 
+              href={data.enclosureUrl} 
+              download 
+              class="inline-flex items-center text-primary-accent hover:underline"
+            >
+              <FaDownload client:load className="mr-2" />
+              Download Episode
+            </a>
+            
+            <button 
+              class="inline-flex items-center text-primary-accent hover:underline"
+              onclick="navigator.share({title: document.title, url: window.location.href})"
+            >
+              <FaShare client:load className="mr-2" />
+              Share Episode
+            </button>
+          </div>
+        </div>
+        
+        <!-- Episode Description -->
+        <div class="bg-white dark:bg-primary-light rounded-lg shadow-xl p-6 mb-8">
+          <h2 class="font-bold text-xl mb-4">About this episode</h2>
+          <div class="prose max-w-none" set:html={data.content || data.description} />
+        </div>
+        
+        <!-- Chapters -->
+        {data.chapters && data.chapters.length > 0 && (
+          <div class="bg-white dark:bg-primary-light rounded-lg shadow-xl p-6 mb-8">
+            <h2 class="font-bold text-xl mb-4">Chapters</h2>
+            <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+              {data.chapters.map((chapter) => (
+                <li class="py-3">
+                  <div class="flex justify-between">
+                    <span class="font-medium">{chapter.title}</span>
+                    <span class="text-gray-500 ">{chapter.start}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+  </main>
+  <Footer client:load />
+</Layout>
